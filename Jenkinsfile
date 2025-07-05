@@ -10,7 +10,7 @@ pipeline {
 
         stage('Build and Test') {
             steps {
-                bat 'gradlew.bat clean test aggregate'  // Ejecuta Gradle Wrapper en Windows
+                bat 'gradlew.bat clean test aggregate'
             }
         }
 
