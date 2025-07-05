@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/tu_usuario/tu_repo.git'
+                git branch: 'main', url: 'https://github.com/Ayath2020/abstracta-opencart-automation-test.git'
             }
         }
 
