@@ -12,7 +12,7 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/Features/CarritoCompras.feature",
         glue = "us.abstracta.opencart.StepsDefinitions",
         snippets = CucumberOptions.SnippetType.CAMELCASE,
-        tags = "@add_to_cart",
+        tags = "",
         plugin = "pretty"
 )
 public class Runner {
