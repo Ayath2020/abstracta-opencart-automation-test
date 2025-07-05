@@ -17,7 +17,7 @@ pipeline {
         stage('Publish Serenity Report') {
             steps {
                 publishHTML([
-                    reportDir: 'build/reports/serenity',
+                    reportDir: 'target/site/serenity',
                     reportFiles: 'index.html',
                     reportName: 'Serenity Report'
                 ])
