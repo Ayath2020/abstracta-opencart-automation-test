@@ -1,38 +1,27 @@
 pipeline {
     agent any
 
-    environment {
-        SELENIUM_URL = "http://selenium:4444/wd/hub"
-    }
-
     stages {
-        stage('Test') {
+        stage('Checkout') {
             steps {
-                echo "🚀 Ejecutando pruebas automatizadas con Selenium remoto"
-                sh './gradlew clean test -Dwebdriver.remote.url=${SELENIUM_URL}'
+                git branch: 'main', url: 'https://github.com/tu_usuario/tu_repo.git'
             }
         }
 
-        stage('Publicar Reporte Serenity') {
+        stage('Build and Test') {
             steps {
-                echo "📊 Publicando reporte en el panel de Jenkins"
-                publishHTML(target: [
-                    reportDir: 'target/site/serenity',
+                bat 'gradlew.bat clean test aggregate'  // Ejecuta Gradle Wrapper en Windows
+            }
+        }
+
+        stage('Publish Serenity Report') {
+            steps {
+                publishHTML([
+                    reportDir: 'build/reports/serenity',
                     reportFiles: 'index.html',
-                    reportName: 'Reporte de Pruebas Automatizadas'
+                    reportName: 'Serenity Report'
                 ])
             }
-        }
-    }
-
-    post {
-        always {
-            echo "🧾 Publicación post-ejecución activa (aunque falle)"
-            publishHTML(target: [
-                reportDir: 'target/site/serenity',
-                reportFiles: 'index.html',
-                reportName: 'Reporte de Pruebas Automatizadas'
-            ])
         }
     }
 }
