@@ -1,0 +1,7 @@
+workflow-aggregator
+htmlpublisher
+git
+docker-plugin
+blueocean
+gradle
+docker-workflow
